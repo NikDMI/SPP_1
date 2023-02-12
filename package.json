@@ -1,0 +1,9 @@
+{
+  "name": "spp_1",
+  "version": "0.0.0",
+  "description": "SPP_1",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  }
+}
