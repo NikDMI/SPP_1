@@ -6,12 +6,15 @@ var path = require('path');
 var ejs = require('ejs');
 //Routes
 var mainRouter = require('./routes/mainRouter.js');
+var dbConnection = require('./code/dbConnection.js');
+
 
 
 //Setup params
 var port = 1337;
 var viewsFolder = path.resolve(__dirname, "views");
 var app = express();
+
 
 //Express settings
 app.set('views', viewsFolder);
@@ -27,3 +30,4 @@ app.use(function (req, res) {
 
 //Startup
 http.createServer(app).listen(port);
+//dbConnection.closeConnection();

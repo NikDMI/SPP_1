@@ -1,3 +1,25 @@
 <%- include('Header.html'); -%>
+    <div class="container main-page-container">
+        <div class="row">
+            <h3><%= sectionName %></h3>
+        </div>
+        <div class="content--item-panel">
+            <% for(let currentItem of items){ %>
 
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="<%= currentItem.imageUri %>" />
+                </div>
+                <div class="col-md-8">
+                    <p><%= currentItem.item_name %></p>
+                    <p><%= currentItem.item_description %></p>
+                </div>
+                <div class="col-md-2">
+                    <p><%= currentItem.item_price %><span><%= currentItem.priceType %></span></p>
+                </div>
+            </div>
+
+            <% } %>
+        </div>
+    </div>
 <%- include('Footer.html'); -%>
