@@ -1,0 +1,20 @@
+:root {
+    --color-primary: #7cb1da;
+    --color-footer: #6287a3;
+    --color-logo: #ffd800;
+    --color-text-primary: #171616;
+    --color-text-hover: #e1dce0;
+}
+
+
+.color-bk-primary{
+    background-color: var(--color-primary);
+}
+
+.color-bk-footer {
+    background-color: var(--color-footer);
+}
+
+.color-text-primary {
+    color: var(--color-primary);
+}

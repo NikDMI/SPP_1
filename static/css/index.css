@@ -1,0 +1,36 @@
+@import url("_colors.css.css");
+
+* {
+    color: var(--color-text-primary);
+}
+
+.main-header{
+    min-height: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+
+a:hover{
+    color: var(--color-text-hover);
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 1px 1px 2px black;
+}
+
+
+.main--center-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer--p{
+    margin: 2px 2px 0px 2px;
+}
