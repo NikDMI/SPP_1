@@ -1,0 +1,21 @@
+<%- include('Header.html'); -%>
+<link rel="stylesheet" href="/css/registrationRole.css" />
+<link rel="stylesheet" href="/css/registrationCustomer.css" />
+<main class="registration-customer-main-container color-bk-primary">
+    <div class="register-customer-container">
+        <div class="reg-customer-wrapper color-bk-reg-panel">
+            <p class="reg-customer-text-header">Регистрация пользователя</p>
+            <div class="reg-customer-wrapper">
+                <button class="btn btn-primary reg-role-btn"
+                        onclick="window.location.href = '/Registration/Customer';">
+                    Покупатель
+                </button>
+                <button class="btn btn-primary reg-role-btn"
+                        onclick="window.location.href = '/Registration/Seller';">
+                    Продавец
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('Footer.html'); -%>

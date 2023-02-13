@@ -47,15 +47,6 @@ img {
     margin: 2px 2px 0px 2px;
 }
 
-.main-page-container {
-    height: 80vh;
-}
-
-.content--item-panel {
-    height: 80vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
 
 .image-container{
     overflow: hidden;

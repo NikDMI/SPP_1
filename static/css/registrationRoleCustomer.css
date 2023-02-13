@@ -1,0 +1,26 @@
+
+.registration-customer-main-container {
+    height: 80vh;
+}
+
+.reg-customer-text-header {
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 10px 0px;
+}
+
+.reg-customer-wrapper {
+    height: 30vh;
+    width: 40%;
+    max-height: 400px;
+    min-width: 400px;
+    border-radius: 10px;
+}
+
+.register-customer-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}

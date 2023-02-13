@@ -6,6 +6,7 @@ var path = require('path');
 var ejs = require('ejs');
 //Routes
 var mainRouter = require('./routes/mainRouter.js');
+var registrationRouter = require('./routes/registrationRouter.js');
 var dbConnection = require('./code/dbConnection.js');
 
 
@@ -24,6 +25,7 @@ app.engine("html", ejs.renderFile);
 //Middlewares
 app.use(express.static(path.resolve(__dirname, "static")));
 app.use('/', mainRouter);
+app.use('/Registration', registrationRouter)
 app.use(function (req, res) {
     res.send('Not found');
 });

@@ -1,9 +1,12 @@
 :root {
-    --color-primary: #7cb1da;
+    --color-primary: #a4d8f1;
+    --color-header: #7cb1da;
     --color-footer: #6287a3;
     --color-logo: #ffd800;
     --color-text-primary: #171616;
     --color-text-hover: #e1dce0;
+    --color-registration-panel: #efefd3;
+    --color-button-primary: #27c2c0;
 }
 
 
@@ -11,8 +14,20 @@
     background-color: var(--color-primary);
 }
 
+.color-bk-header {
+    background-color: var(--color-header);
+}
+
 .color-bk-footer {
     background-color: var(--color-footer);
+}
+
+.color-bk-reg-panel {
+    background-color: var(--color-registration-panel);
+}
+
+.color-bk-btn-primary {
+    background-color: var(--color-button-primary);
 }
 
 .color-text-primary {

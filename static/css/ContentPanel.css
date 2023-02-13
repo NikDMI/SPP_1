@@ -1,0 +1,16 @@
+
+
+.main-page-container {
+    height: 80vh;
+    overflow: hidden;
+}
+
+.content--item-panel {
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.content--item-box{
+    margin-top: 10px;
+}
