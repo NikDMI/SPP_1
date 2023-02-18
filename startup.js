@@ -4,6 +4,8 @@ var http = require('http');
 var express = require('express');
 var path = require('path');
 var ejs = require('ejs');
+var bodyParser = require("body-parser");
+
 //Routes
 var mainRouter = require('./routes/mainRouter.js');
 var registrationRouter = require('./routes/registrationRouter.js');
@@ -24,6 +26,7 @@ app.engine("html", ejs.renderFile);
 
 //Middlewares
 app.use(express.static(path.resolve(__dirname, "static")));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', mainRouter);
 app.use('/Registration', registrationRouter)
 app.use(function (req, res) {

@@ -1,20 +1,37 @@
 <%- include('Header.html'); -%>
-<link rel="stylesheet" href="/css/registrationRole.css" />
-<link rel="stylesheet" href="/css/registrationCustomer.css" />
+<link rel="stylesheet" href="../static/css/registrationRoleCustomer.css" />
+<link rel="stylesheet" href="/css/registrationRoleCustomer.css" />
+
 <main class="registration-customer-main-container color-bk-primary">
     <div class="register-customer-container">
         <div class="reg-customer-wrapper color-bk-reg-panel">
             <p class="reg-customer-text-header">Регистрация пользователя</p>
-            <div class="reg-customer-wrapper">
-                <button class="btn btn-primary reg-role-btn"
-                        onclick="window.location.href = '/Registration/Customer';">
-                    Покупатель
-                </button>
-                <button class="btn btn-primary reg-role-btn"
-                        onclick="window.location.href = '/Registration/Seller';">
-                    Продавец
-                </button>
+
+            <div class="reg-customer-form-container">
+                <form method="post" action="/Registration/Customer/Register">
+                    <div class="row form-row">
+                        <label class="col-md-3">Имя:</label>
+                        <input type="text" name="userName" class="col-md-6" />
+                    </div>
+                    <div class="row form-row">
+                        <label class="col-md-3">Фамилия:</label>
+                        <input type="text" name="userSurname" class="col-md-6" />
+                    </div>
+                    <div class="row form-row">
+                        <label class="col-md-3">e-mail:</label>
+                        <input type="text" name="userEmail" class="col-md-6" />
+                    </div>
+                    <div class="row form-row">
+                        <label class="col-md-3">Пароль:</label>
+                        <input type="text" name="userPassword" class="col-md-6" />
+                    </div>
+                    <div class="form-row row center-container">
+                        <input type="submit" value="Зарегистрироваться"
+                               class="form-row btn btn-primary col-md-6">
+                    </div>
+                </form>
             </div>
+
         </div>
     </div>
 </main>

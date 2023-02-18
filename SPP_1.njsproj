@@ -34,10 +34,22 @@
     <Content Include="routes\mainRouter.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="routes\registrationRouter.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="startup.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="static\css\contentPanel.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="static\css\index.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="static\css\registrationRole.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="static\css\registrationRoleCustomer.css">
       <SubType>Code</SubType>
     </Content>
     <Content Include="static\css\_colors.css">
@@ -186,6 +198,12 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\MainPage.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\RegisterPageCustomer.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\RegisterPageRole.html">
       <SubType>Code</SubType>
     </Content>
   </ItemGroup>

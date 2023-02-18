@@ -1,5 +1,6 @@
 
 .registration-customer-main-container {
+    display:block;
     height: 80vh;
 }
 
@@ -10,11 +11,14 @@
 }
 
 .reg-customer-wrapper {
-    height: 30vh;
+    height: 50vh;
     width: 40%;
     max-height: 400px;
     min-width: 400px;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .register-customer-container {
@@ -23,4 +27,16 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+}
+
+
+.reg-customer-form-container {
+    
+    width: 100%;
+    margin: 5px 10px;
+}
+
+
+.reg-customer-btn{
+    margin-inline: 10px;
 }
