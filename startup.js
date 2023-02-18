@@ -9,6 +9,7 @@ var bodyParser = require("body-parser");
 //Routes
 var mainRouter = require('./routes/mainRouter.js');
 var registrationRouter = require('./routes/registrationRouter.js');
+var authorizationRouter = require('./routes/authorizationRouter.js');
 var dbConnection = require('./code/dbConnection.js');
 
 
@@ -29,6 +30,7 @@ app.use(express.static(path.resolve(__dirname, "static")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', mainRouter);
 app.use('/Registration', registrationRouter)
+app.use('/Authorization', authorizationRouter);
 app.use(function (req, res) {
     res.send('Not found');
 });

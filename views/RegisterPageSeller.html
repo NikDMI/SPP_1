@@ -1,0 +1,34 @@
+<%- include('Header.html'); -%>
+<link rel="stylesheet" href="../static/css/registrationRoleCustomer.css" />
+<link rel="stylesheet" href="/css/registrationRoleCustomer.css" />
+
+<main class="registration-customer-main-container color-bk-primary">
+    <div class="register-customer-container">
+        <div class="reg-customer-wrapper color-bk-reg-panel">
+            <p class="reg-customer-text-header">Регистрация поставщика товаров</p>
+
+            <div class="reg-customer-form-container">
+                <form method="post" action="/Registration/Seller/Register">
+                    <div class="row form-row">
+                        <label class="col-md-3">Название ИП:</label>
+                        <input type="text" name="sellerName" class="col-md-6" />
+                    </div>
+                    <div class="row form-row">
+                        <label class="col-md-3">e-mail:</label>
+                        <input type="text" name="sellerEmail" class="col-md-6" />
+                    </div>
+                    <div class="row form-row">
+                        <label class="col-md-3">Пароль:</label>
+                        <input type="text" name="sellerPassword" class="col-md-6" />
+                    </div>
+                    <div class="form-row row center-container">
+                        <input type="submit" value="Зарегистрировать"
+                               class="form-row btn btn-primary col-md-4">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+<%- include('Footer.html'); -%>

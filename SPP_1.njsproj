@@ -31,6 +31,9 @@
     <Content Include="code\dbConnection.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="routes\authorizationRouter.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\mainRouter.js">
       <SubType>Code</SubType>
     </Content>
@@ -40,6 +43,9 @@
     <Content Include="startup.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="static\css\authorization.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="static\css\contentPanel.css">
       <SubType>Code</SubType>
     </Content>
@@ -188,6 +194,9 @@
     <Content Include="static\lib\twitter-bootstrap\scss\_type.scss" />
     <Content Include="static\lib\twitter-bootstrap\scss\_utilities.scss" />
     <Content Include="static\lib\twitter-bootstrap\scss\_variables.scss" />
+    <Content Include="views\AuthPage.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\Footer.html">
       <SubType>Code</SubType>
     </Content>
@@ -204,6 +213,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\RegisterPageRole.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\RegisterPageSeller.html">
       <SubType>Code</SubType>
     </Content>
   </ItemGroup>
