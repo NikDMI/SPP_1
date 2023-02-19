@@ -15,10 +15,12 @@ dbConnection.connect(function (err) {
 
 
 var dbConnectionBuilder = {
+
     //Close db connection 
     closeConnection: function () {
         dbConnection.end();
     },
+
 
     //Get all items in catalog table or return []
     getCatalogItems: async function () {
@@ -45,18 +47,20 @@ var dbConnectionBuilder = {
         return items;
     },
 
+
     //Checks if user exists
-    isUserExists: async function (userEmail) {
+    isUserExistsWithEmail: async function (userEmail) {
         try {
             let userRecord = await dbConnection.promise().query(`SELECT * FROM \`persons\` WHERE person_email = '${userEmail}'`);
             if (userRecord[0].length > 0) {
-                return true;
+                return userRecord[0][0];
             }
         } catch (err) {
-            return true;
+            return null;
         }
-        return false;
+        return null;
     },
+
 
     addNewUser: async function (user) {
         try {

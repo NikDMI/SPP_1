@@ -39,8 +39,8 @@ async function registerNewCustomer(req, res, next) {
         res.redirect("/Registration/Customer");
         return;
     }
-    let isUserExists = await dbConnection.isUserExists(userEmail);
-    if (isUserExists) {
+    let isUserExists = await dbConnection.isUserExistsWithEmail(userEmail);
+    if (isUserExists !== null) {
         res.send("User with email already exists!");
         return;
     } else {
@@ -65,8 +65,8 @@ async function registerNewSeller(req, res, next) {
         res.redirect("/Registration/Seller");
         return;
     }
-    let isUserExists = await dbConnection.isUserExists(sellerEmail);
-    if (isUserExists) {
+    let isUserExists = await dbConnection.isUserExistsWithEmail(sellerEmail);
+    if (isUserExists !== null) {
         res.send("User with email already exists!");
         return;
     } else {
