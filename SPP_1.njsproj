@@ -31,6 +31,9 @@
     <Content Include="code\dbConnection.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="code\userSession.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\authorizationRouter.js">
       <SubType>Code</SubType>
     </Content>
@@ -50,6 +53,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="static\css\index.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="static\css\mainPage.css">
       <SubType>Code</SubType>
     </Content>
     <Content Include="static\css\registrationRole.css">

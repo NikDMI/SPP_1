@@ -1,31 +1,47 @@
 <%- include('Header.html'); -%>
 <link rel="stylesheet" href="../static/css/contentPanel.css" />
 <link rel="stylesheet" href="/css/contentPanel.css" />
+<link rel="stylesheet" href="/css/mainPage.css" />
 
-<main class="color-bk-primary">
+<main class="color-bk-primary row">
+    
+    <nav class="col-md-3 main-page-nav_container color-bk-nav-panel">
 
-<div class="container main-page-container">
-    <div class="row">
-        <h3><%= sectionName %></h3>
-    </div>
-    <div class="content--item-panel">
-        <% for(let currentItem of items){ %>
-
-        <div class="row content--item-box">
-            <div class="col-md-2 image-container">
-                <img src="<%= currentItem.imageUri %>" />
-            </div>
-            <div class="col-md-8">
-                <p><%= currentItem.item_name %></p>
-                <p><%= currentItem.item_description %></p>
-            </div>
-            <div class="col-md-2">
-                <p><%= currentItem.item_price %><span><%= currentItem.priceType %></span></p>
-            </div>
+        <div class="nav-item-container">
+            <p><a>Categories</a></p>
         </div>
 
+        <% if(isSeller){ %>
+        <div class="nav-item-container">
+            <p><a>Add new item</a></p>
+        </div>
         <% } %>
+
+    </nav>
+
+
+    <div class="container main-page-container col-md-9">
+        <div class="row">
+            <h3><%= sectionName %></h3>
+        </div>
+        <div class="content--item-panel">
+            <% for(let currentItem of items){ %>
+
+            <div class="row content--item-box">
+                <div class="col-md-2 image-container">
+                    <img src="<%= currentItem.imageUri %>" />
+                </div>
+                <div class="col-md-8">
+                    <p><%= currentItem.item_name %></p>
+                    <p><%= currentItem.item_description %></p>
+                </div>
+                <div class="col-md-2">
+                    <p><%= currentItem.item_price %><span><%= currentItem.priceType %></span></p>
+                </div>
+            </div>
+
+            <% } %>
+        </div>
     </div>
-</div>
 </main>
 <%- include('Footer.html'); -%>

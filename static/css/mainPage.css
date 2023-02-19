@@ -1,0 +1,7 @@
+.main-page-nav_container {
+    border-right: 3px solid var(--color-nav-panel-border);
+}
+
+.nav-item-container{
+    margin: 2px 4px;
+}

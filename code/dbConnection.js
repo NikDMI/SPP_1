@@ -73,6 +73,17 @@ var dbConnectionBuilder = {
             return false;
         }
         return true;
+    },
+
+
+    getUserById: async function (userId) {
+        try {
+            let queryResult = await dbConnection.promise().query(`SELECT * FROM \`persons\` WHERE person_id = '${userId}'`);
+            return queryResult[0][0];
+
+        } catch (err) {
+            return null;
+        }
     }
 };
 

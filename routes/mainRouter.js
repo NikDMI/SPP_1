@@ -1,19 +1,30 @@
 var express = require('express');
 var dbConnection = require('../code/dbConnection');
+var session = require('../code/userSession');
 
 var mainRouter = express.Router();
 
 //This function of the main site page
 var mainRequestFunction = async function (req, res) {
-    //getCatalogItems();
     let items = [];
     try {
         items = await getCatalogItems();
     } catch (err) {
 
     }
-    console.log(items);
-    res.render("MainPage.html", { sectionName: "Products", items: items});
+    //Get auth user
+    let userInfo = null;
+    console.log(req.cookies);
+    if (req.cookies?.sessionId) {
+        userId = session.getUserBySessionId(req.cookies.sessionId)
+        if (userId) {
+            userInfo = await dbConnection.getUserById(userId);
+        }
+    }
+    console.log(userInfo);
+    let isSeller = false;
+    isSeller = (userInfo?.person_role_id === 1) ? true : false;
+    res.render("MainPage.html", { sectionName: "Products", items: items, isSeller: isSeller});
 }
 
 
