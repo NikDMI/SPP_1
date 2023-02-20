@@ -58,6 +58,9 @@
     <Content Include="static\css\index.css">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="static\css\itemEdit.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="static\css\itemsPage.css">
       <SubType>Code</SubType>
     </Content>
@@ -213,6 +216,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\Header.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\ItemManager\EditItemPage.html">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\ItemManager\ItemsPage.html">

@@ -1,0 +1,19 @@
+.image-row{
+    max-height: 300px;
+}
+
+.item-edit-row-container {
+    width: 100%;
+    margin: 5px 0px;
+}
+
+.item-edit-btn{
+    height: 40px;
+}
+
+.item-edit-container{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+}

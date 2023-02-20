@@ -32,7 +32,7 @@ app.use(express.static(path.resolve(__dirname, "static")));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', mainRouter);
-app.use('/Registration', registrationRouter)
+app.use('/Registration', registrationRouter);
 app.use('/Authorization', authorizationRouter);
 app.use('/Items', itemManagerRouter);
 app.use(function (req, res) {

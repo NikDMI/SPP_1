@@ -38,6 +38,11 @@ managerRouter.use('', async function (req, res, next) {
 });
 
 
+managerRouter.use('/New', async function (req, res, next) {
+    res.render("ItemManager/EditItemPage.html");
+});
+
+
 module.exports = managerRouter;
 
 

@@ -1,0 +1,44 @@
+<%- include('../Header.html'); -%>
+<link rel="stylesheet" href="/css/itemEdit.css" />
+<link rel="stylesheet" href="/css/contentPanel.css" />
+
+<main class="color-bk-primary">
+
+    <div class="container main-page-container">
+        <form class="content--item-panel item-edit-container" action="" method="post">
+
+            <div class="row image-row item-edit-row-container">
+                <img class="image-container col-md-3" src="/img/noimage.png" />
+                <input class="col-md-5" type="file" accept="image/*" name="itemImage" />
+            </div>
+            <div class="row item-edit-row-container">
+                <span class="col-md-3">Название:</span>
+                <input class="col-md-6" type="text" name="itemName" />
+            </div>
+            <div class="row item-edit-row-container">
+                <span class="col-md-3">Описание:</span>
+                <input class="col-md-6" type="text" name="itemDescription" />
+            </div>
+            <div class="row item-edit-row-container">
+                <span class="col-md-3">Стоимость:</span>
+                <input class="col-md-6" type="text" name="itemPrice" />
+            </div>
+            <div class="row item-edit-row-container">
+                <span class="col-md-3">На складе:</span>
+                <input class="col-md-6" type="text" name="itemStorageCount" />
+            </div>
+            <div class="row item-edit-row-container">
+                <span class="col-md-3">В каталоге:</span>
+                <input class="col-md-6" type="text" name="itemCatalogCount" />
+            </div>
+            <div class="row item-edit-row-container">
+                <span class="col-md-3">Категория:</span>
+            </div>
+            <div class="row item-edit-row-container container-center">
+                <input type="submit" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+
+</main>
+<%- include('../Footer.html'); -%>
