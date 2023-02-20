@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 var mainRouter = require('./routes/mainRouter.js');
 var registrationRouter = require('./routes/registrationRouter.js');
 var authorizationRouter = require('./routes/authorizationRouter.js');
+var itemManagerRouter = require('./routes/itemManagerRouter');
 var dbConnection = require('./code/dbConnection.js');
 
 
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', mainRouter);
 app.use('/Registration', registrationRouter)
 app.use('/Authorization', authorizationRouter);
+app.use('/Items', itemManagerRouter);
 app.use(function (req, res) {
     res.send('Not found');
 });

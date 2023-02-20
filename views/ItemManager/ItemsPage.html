@@ -1,0 +1,47 @@
+<%- include('../Header.html'); -%>
+<link rel="stylesheet" href="/css/itemsPage.css" />
+<link rel="stylesheet" href="/css/contentPanel.css" />
+
+<main class="color-bk-primary">
+
+    <div class="container main-page-container">
+        <div class="content--item-panel">
+            <% for(let currentItem of items){ %>
+
+            <div class="row content--item-box">
+                <div class="col-md-2 image-container">
+                    <img src="<%= currentItem.imageUri %>" />
+                </div>
+                <div class="col-md-6">
+                    <p><%= currentItem.item_name %></p>
+                    <p><%= currentItem.item_description %></p>
+                </div>
+                <div class="col-md-1">
+                    <p><%= currentItem.item_price %><span><%= currentItem.priceType %></span></p>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary item-action-button">Редактировать</button>
+                    <button class="btn btn-primary item-action-button">Удалить</button>
+                </div>
+            </div>
+
+            <% } %>
+        </div>
+
+        <div class="nav-page-contaiter row">
+            <div class="col-md-10 center-container">
+                <% for(let page of pages){ %>
+                <a class=" nav-link <% if(page.isMain === true){ %> nav-selected-link <% } %>"
+                   href="/Items/Page?page_number=<%= page.number %>">
+                    <%= page.number %>
+                </a>
+                <% } %>
+            </div>
+            <div class="col-md-2 center-container">
+                <button class="btn btn-primary">Добавить</button>
+            </div>
+        </div>
+    </div>
+
+</main>
+<%- include('../Footer.html'); -%>

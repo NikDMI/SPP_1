@@ -27,7 +27,6 @@ var dbConnectionBuilder = {
         let items = [];
         try {
             let catalogRecords = await dbConnection.promise().query("SELECT * FROM `catalog`");
-            console.log(catalogRecords);
             for (let catalogRecord of catalogRecords[0]) {
                 let itemId = catalogRecord.cat_item_id;
                 console.log(itemId);
@@ -84,7 +83,32 @@ var dbConnectionBuilder = {
         } catch (err) {
             return null;
         }
-    }
+    },
+
+
+    //Get all items in storage table or return []
+    getStorageItemsBySellerId: async function (sellerId) {
+        let items = [];
+        try {
+            let storageRecords = await dbConnection.promise().query(`SELECT * FROM \`storage\` WHERE st_manufacture_id=${sellerId}`);
+            console.log(storageRecords);
+            for (let storageRecord of storageRecords[0]) {
+                let itemId = storageRecord.st_item_id;
+                try {
+                    let item =
+                        await dbConnection.promise().query(`SELECT * FROM \`items\` WHERE item_id = ${itemId}`);
+                    item = item[0][0];
+                    item.imageUri = "\\img\\noimage.png";
+                    items.push(item);
+                } catch (err) {
+
+                }
+            }
+        } catch (err) {
+
+        }
+        return items;
+    },
 };
 
 module.exports = dbConnectionBuilder;

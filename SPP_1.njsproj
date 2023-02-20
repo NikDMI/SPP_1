@@ -37,6 +37,9 @@
     <Content Include="routes\authorizationRouter.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="routes\itemManagerRouter.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\mainRouter.js">
       <SubType>Code</SubType>
     </Content>
@@ -53,6 +56,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="static\css\index.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="static\css\itemsPage.css">
       <SubType>Code</SubType>
     </Content>
     <Content Include="static\css\mainPage.css">
@@ -209,6 +215,9 @@
     <Content Include="views\Header.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="views\ItemManager\ItemsPage.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\ItemTemplate.html">
       <SubType>Code</SubType>
     </Content>
@@ -242,6 +251,7 @@
     <Folder Include="static\css\" />
     <Folder Include="views\" />
     <Folder Include="static\" />
+    <Folder Include="views\ItemManager\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

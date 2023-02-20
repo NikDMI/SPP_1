@@ -1,8 +1,8 @@
 
 
 .main-page-container {
-    height: 80vh;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .content--item-panel {
@@ -13,4 +13,9 @@
 
 .content--item-box{
     margin-top: 10px;
+}
+
+.nav-page-contaiter{
+    height:100px;
+    background-color:yellow;
 }
