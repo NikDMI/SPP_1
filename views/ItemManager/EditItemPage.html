@@ -5,11 +5,11 @@
 <main class="color-bk-primary">
 
     <div class="container main-page-container">
-        <form class="content--item-panel item-edit-container" action="" method="post">
-
+        <form class="content--item-panel item-edit-container" action="/Items/Editor" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="itemId" value="-1"/>
             <div class="row image-row item-edit-row-container">
                 <img class="image-container col-md-3" src="/img/noimage.png" />
-                <input class="col-md-5" type="file" accept="image/*" name="itemImage" />
+                <input class="col-md-5" type="file" accept="image/png" name="itemImage" />
             </div>
             <div class="row item-edit-row-container">
                 <span class="col-md-3">Название:</span>
@@ -21,7 +21,11 @@
             </div>
             <div class="row item-edit-row-container">
                 <span class="col-md-3">Стоимость:</span>
-                <input class="col-md-6" type="text" name="itemPrice" />
+                <input class="col-md-5" type="text" name="itemPrice" />
+                <select class="col-md-1" name="itemPriceTypeId">
+                    <option value="1">$</option>
+                    <option value="2">$/час</option>
+                </select>
             </div>
             <div class="row item-edit-row-container">
                 <span class="col-md-3">На складе:</span>
@@ -33,9 +37,12 @@
             </div>
             <div class="row item-edit-row-container">
                 <span class="col-md-3">Категория:</span>
+                <select class="col-md-3" name="itemCategory">
+                    <option value="1">Продукты</option>
+                </select>
             </div>
             <div class="row item-edit-row-container container-center">
-                <input type="submit" class="btn btn-primary"/>
+                <input type="submit" class="btn btn-primary" value="Сохранить"/>
             </div>
         </form>
     </div>

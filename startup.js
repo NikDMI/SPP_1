@@ -6,6 +6,7 @@ var path = require('path');
 var ejs = require('ejs');
 var bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 //Routes
 var mainRouter = require('./routes/mainRouter.js');
@@ -30,7 +31,9 @@ app.engine("html", ejs.renderFile);
 //Middlewares
 app.use(express.static(path.resolve(__dirname, "static")));
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(fileUpload());
 app.use('/', mainRouter);
 app.use('/Registration', registrationRouter);
 app.use('/Authorization', authorizationRouter);

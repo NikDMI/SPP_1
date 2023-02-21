@@ -75,6 +75,32 @@ var dbConnectionBuilder = {
     },
 
 
+    addNewItem: async function (item, manufactureId) {
+        try {
+            //Add item to items
+            let resQuery = await dbConnection.promise().query(`INSERT INTO \`items\`
+                (item_name, item_description, item_price, item_section_id, item_price_type_id, item_img_path)
+                 VALUES ('${item.itemName}', '${item.itemDescription}', ${item.itemPrice}, 0, ${item.itemPriceTypeId}, 
+                '${item.itemImage}')`);
+            let itemId = resQuery[0].insertId;
+            //Add item to storage
+            await dbConnection.promise().query(`INSERT INTO \`storage\`
+                (st_manufacture_id, st_item_id, st_count)
+                 VALUES (${manufactureId}, ${itemId}, ${item.itemStorageCount})`);
+            //Add item to catalog
+            //Add item to storage
+            await dbConnection.promise().query(`INSERT INTO \`catalog\`
+                (cat_manufacture_id, cat_item_id, cat_items_count)
+                 VALUES (${manufactureId}, ${itemId}, ${item.itemCatalogCount})`);
+
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
+        return true;
+    },
+
+
     getUserById: async function (userId) {
         try {
             let queryResult = await dbConnection.promise().query(`SELECT * FROM \`persons\` WHERE person_id = '${userId}'`);

@@ -244,6 +244,7 @@
     <Folder Include="code\" />
     <Folder Include="routes\" />
     <Folder Include="static\img\" />
+    <Folder Include="static\img\userItems\" />
     <Folder Include="static\lib\" />
     <Folder Include="static\lib\twitter-bootstrap\" />
     <Folder Include="static\lib\twitter-bootstrap\css\" />
