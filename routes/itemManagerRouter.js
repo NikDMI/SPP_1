@@ -30,7 +30,6 @@ managerRouter.use('', async function (req, res, next) {
         //Get list of registered items
         let userId = session.getUserBySessionId(req.cookies.sessionId);
         let items = await dbConnection.getStorageItemsBySellerId(userId);
-        console.log(items);
         res.render("ItemManager/ItemsPage.html", { items: items, pages: [{ number: 1, isMain: true }, { number: 2 }]});
     } else {
         next();
@@ -39,7 +38,26 @@ managerRouter.use('', async function (req, res, next) {
 
 
 managerRouter.use('/New', async function (req, res, next) {
-    res.render("ItemManager/EditItemPage.html");
+    let sections = await dbConnection.getSections(0);
+    let item = {
+        item_id: -1,
+        item_img_path: "/img/noimage.img",
+        item_name: "",
+        item_description: "",
+        item_price: "0"
+    }
+    res.render("ItemManager/EditItemPage.html", {sections: sections, item: item});
+});
+
+managerRouter.use('/Edit', async function (req, res, next) {
+    let sections = await dbConnection.getSections(0);
+    let itemId = req.query.itemId;
+    if (itemId == null) {
+        res.send("Not found");
+        return;
+    }
+    let item = await dbConnection.getItemById(itemId);
+    res.render("ItemManager/EditItemPage.html", { sections: sections, item: item });
 });
 
 
@@ -50,10 +68,9 @@ managerRouter.post('/Editor', async function (req, res, next) {
         return;
     }
     //Change image
-    //console.log(req);
-    if (!req.files) {
+    if (!req.files && req.body.itemId == -1) {
         req.body.itemImage = "/img/noimage.png";
-    } else {
+    } else if (req.files) {
         //Upload image
         let imgName = req.body.itemId + req.cookies.sessionId + process.hrtime()[0] + ".png";
         let img = req.files.itemImage;
@@ -67,7 +84,8 @@ managerRouter.post('/Editor', async function (req, res, next) {
     if (req.body.itemId == -1) {
         await dbConnection.addNewItem(req.body, userId);
     } else {
-
+        //update item
+        await dbConnection.updateItem(req.body, userId);
     }
     res.redirect("/Items");
 });
@@ -81,7 +99,7 @@ module.exports = managerRouter;
 function isValidItemFormData(itemData) {
     if (isNull(itemData.itemId) || isNull(itemData.itemName) || isNull(itemData.itemDescription) ||
         isNull(itemData.itemPrice) || isNull(itemData.itemPriceTypeId) ||
-        isNull(itemData.itemStorageCount) || isNull(itemData.itemCatalogCount) || isNull(itemData.itemCategory)) {
+        isNull(itemData.itemStorageCount) || isNull(itemData.itemCatalogCount) || isNull(itemData.itemSection)) {
         return false;
     }
     let itemPrice = Number.parseInt(itemData.itemPrice);

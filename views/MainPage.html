@@ -8,7 +8,9 @@
     <nav class="col-md-3 main-page-nav_container color-bk-nav-panel">
 
         <div class="nav-item-container">
-            <p><a>Categories</a></p>
+            <% for(let section of sections){ %>
+            <p><a href="/main/?sectionId=<%= section.section_id %>"><%= section.section_name %></a></p>
+            <% } %>
         </div>
 
         <% if(isSeller){ %>
@@ -36,7 +38,7 @@
                     <p><%= currentItem.item_description %></p>
                 </div>
                 <div class="col-md-2">
-                    <p><%= currentItem.item_price %><span><%= currentItem.priceType %></span></p>
+                    <p><%= currentItem.item_price %><span><%= currentItem.price_description %></span></p>
                 </div>
             </div>
 

@@ -6,22 +6,22 @@
 
     <div class="container main-page-container">
         <form class="content--item-panel item-edit-container" action="/Items/Editor" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="itemId" value="-1"/>
+            <input type="hidden" name="itemId" value="<%= item.item_id %>"/>
             <div class="row image-row item-edit-row-container">
-                <img class="image-container col-md-3" src="/img/noimage.png" />
+                <img class="image-container col-md-3" src="<%= item.item_img_path %>" />
                 <input class="col-md-5" type="file" accept="image/png" name="itemImage" />
             </div>
             <div class="row item-edit-row-container">
                 <span class="col-md-3">Название:</span>
-                <input class="col-md-6" type="text" name="itemName" />
+                <input class="col-md-6" type="text" name="itemName" value="<%= item.item_name %>"/>
             </div>
             <div class="row item-edit-row-container">
                 <span class="col-md-3">Описание:</span>
-                <input class="col-md-6" type="text" name="itemDescription" />
+                <input class="col-md-6" type="text" name="itemDescription" value="<%= item.item_description %>"/>
             </div>
             <div class="row item-edit-row-container">
                 <span class="col-md-3">Стоимость:</span>
-                <input class="col-md-5" type="text" name="itemPrice" />
+                <input class="col-md-5" type="text" name="itemPrice" value="<%= item.item_price %>"/>
                 <select class="col-md-1" name="itemPriceTypeId">
                     <option value="1">$</option>
                     <option value="2">$/час</option>
@@ -37,8 +37,10 @@
             </div>
             <div class="row item-edit-row-container">
                 <span class="col-md-3">Категория:</span>
-                <select class="col-md-3" name="itemCategory">
-                    <option value="1">Продукты</option>
+                <select class="col-md-3" name="itemSection">
+                    <% for(let section of sections){ %>
+                    <option value="<%= section.section_id %>"><%= section.section_name %></option>
+                    <% } %>
                 </select>
             </div>
             <div class="row item-edit-row-container container-center">

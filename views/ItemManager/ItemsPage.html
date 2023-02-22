@@ -12,15 +12,17 @@
                 <div class="col-md-2 image-container">
                     <img src="<%= currentItem.item_img_path %>" />
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <p><%= currentItem.item_name %></p>
                     <p><%= currentItem.item_description %></p>
                 </div>
-                <div class="col-md-1">
-                    <p><%= currentItem.item_price %><span><%= currentItem.priceType %></span></p>
+                <div class="col-md-2">
+                    <p><%= currentItem.item_price %><span><%= currentItem.price_description %></span></p>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-primary item-action-button">Редактировать</button>
+                    <button class="btn btn-primary item-action-button" 
+                            onclick="window.location.href = '/Items//Edit?itemId=<%= currentItem.item_id %>';">
+                    Редактировать</button>
                     <button class="btn btn-primary item-action-button">Удалить</button>
                 </div>
             </div>

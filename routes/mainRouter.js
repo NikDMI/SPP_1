@@ -7,8 +7,23 @@ var mainRouter = express.Router();
 //This function of the main site page
 var mainRequestFunction = async function (req, res) {
     let items = [];
+    let sections = await dbConnection.getSections();
+    let currentSection = sections[0];
     try {
-        items = await getCatalogItems();
+        let sectionId = req.query?.sectionId;
+        if (sectionId == null || sectionId == undefined) {
+            sectionId = sections[0].section_id;
+            currentSection = sections[0];
+        } else {
+            //Find section (need recirsive)
+            for (let sec of sections) {
+                if (sec.section_id == sectionId) {
+                    currentSection = sec;
+                    break;
+                }
+            }
+        }
+        items = await dbConnection.getCatalogItems(sectionId);
     } catch (err) {
 
     }
@@ -21,10 +36,9 @@ var mainRequestFunction = async function (req, res) {
             userInfo = await dbConnection.getUserById(userId);
         }
     }
-    console.log(userInfo);
     let isSeller = false;
     isSeller = (userInfo?.person_role_id === 1) ? true : false;
-    res.render("MainPage.html", { sectionName: "Products", items: items, isSeller: isSeller});
+    res.render("MainPage.html", { sectionName: currentSection.section_name, items: items, isSeller: isSeller, sections: sections});
 }
 
 
