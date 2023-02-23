@@ -60,6 +60,17 @@ managerRouter.use('/Edit', async function (req, res, next) {
     res.render("ItemManager/EditItemPage.html", { sections: sections, item: item });
 });
 
+managerRouter.use('/Delete', async function (req, res, next) {
+    let sections = await dbConnection.getSections(0);
+    let itemId = req.query.itemId;
+    if (itemId == null) {
+        res.send("Not found");
+        return;
+    }
+    await dbConnection.removeItem(itemId);
+    res.redirect("/Items");
+});
+
 
 //Add or edit items
 managerRouter.post('/Editor', async function (req, res, next) {

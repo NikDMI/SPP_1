@@ -23,7 +23,9 @@
                     <button class="btn btn-primary item-action-button" 
                             onclick="window.location.href = '/Items//Edit?itemId=<%= currentItem.item_id %>';">
                     Редактировать</button>
-                    <button class="btn btn-primary item-action-button">Удалить</button>
+                    <button class="btn btn-primary item-action-button"
+                            onclick="window.location.href = '/Items//Delete?itemId=<%= currentItem.item_id %>';"
+                            >Удалить</button>
                 </div>
             </div>
 

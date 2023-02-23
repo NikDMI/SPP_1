@@ -100,6 +100,25 @@ var dbConnectionBuilder = {
     },
 
 
+    removeItem: async function (itemId, manufactureId) {
+        try {
+            console.log("aA" + itemId);
+            //Add item to items
+            await dbConnection.promise().query(`DELETE FROM \`storage\` WHERE st_item_id = ${itemId}`);
+            await dbConnection.promise().query(`DELETE FROM \`catalog\` WHERE cat_item_id = ${itemId}`);
+            await dbConnection.promise().query(`DELETE FROM \`items\` WHERE item_id = ${itemId}`);
+            //Add item to storage
+            //Add item to catalog
+            //Add item to storage
+
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
+        return true;
+    },
+
+
     updateItem: async function (itemData, manufactureId) {
         try {
             let item = await dbConnectionBuilder.getItemById(itemData.itemId);
