@@ -37,6 +37,9 @@
     <Content Include="routes\authorizationRouter.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="routes\basketRouter.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\itemManagerRouter.js">
       <SubType>Code</SubType>
     </Content>
@@ -50,6 +53,9 @@
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="static\css\authorization.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="static\css\basketPage.css">
       <SubType>Code</SubType>
     </Content>
     <Content Include="static\css\contentPanel.css">
@@ -212,6 +218,9 @@
     <Content Include="views\AuthPage.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="views\Basket\BasketPage.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\Footer.html">
       <SubType>Code</SubType>
     </Content>
@@ -259,6 +268,7 @@
     <Folder Include="views\" />
     <Folder Include="static\" />
     <Folder Include="views\ItemManager\" />
+    <Folder Include="views\Basket\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

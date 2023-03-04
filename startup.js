@@ -13,6 +13,7 @@ var mainRouter = require('./routes/mainRouter.js');
 var registrationRouter = require('./routes/registrationRouter.js');
 var authorizationRouter = require('./routes/authorizationRouter.js');
 var itemManagerRouter = require('./routes/itemManagerRouter');
+var basketRouter = require('./routes/basketRouter');
 var dbConnection = require('./code/dbConnection.js');
 
 
@@ -38,6 +39,7 @@ app.use('/', mainRouter);
 app.use('/Registration', registrationRouter);
 app.use('/Authorization', authorizationRouter);
 app.use('/Items', itemManagerRouter);
+app.use('/Basket', basketRouter);
 app.use(function (req, res) {
     res.send('Not found');
 });

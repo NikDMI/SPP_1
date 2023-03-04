@@ -46,7 +46,7 @@ async function registerNewCustomer(req, res, next) {
     } else {
         //Add new user to DB
         let user = {
-            person_role_id: 0,
+            person_role_id: 1,
             person_name: req.body.userName,
             person_surname: req.body.userSurname,
             person_email: userEmail,
@@ -62,6 +62,7 @@ async function registerNewSeller(req, res, next) {
     //Check user data
     let sellerEmail = req.body.sellerEmail;
     if (!checkSellerFormData(req.body)) {
+        // Form data is invalid
         res.redirect("/Registration/Seller");
         return;
     }
@@ -72,7 +73,7 @@ async function registerNewSeller(req, res, next) {
     } else {
         //Add new seller to DB
         let user = {
-            person_role_id: 1,
+            person_role_id: 3,
             person_name: req.body.sellerName,
             person_surname: '',
             person_email: sellerEmail,

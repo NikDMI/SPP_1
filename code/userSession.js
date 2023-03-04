@@ -14,6 +14,7 @@ let userSessionObject = {
     //Return -> sha256 key for user session
     getUserBySessionId: function (sessionId) {
         let userSession = userSessions.get(sessionId);
+        //Check user date validation
         return userSession?.userId;
     }
 }

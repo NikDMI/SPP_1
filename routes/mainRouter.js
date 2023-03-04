@@ -37,8 +37,12 @@ var mainRequestFunction = async function (req, res) {
         }
     }
     let isSeller = false;
-    isSeller = (userInfo?.person_role_id === 1) ? true : false;
-    res.render("MainPage.html", { sectionName: currentSection.section_name, items: items, isSeller: isSeller, sections: sections});
+    isSeller = (userInfo?.person_role_id === 3) ? true : false;
+    isCustomer = (userInfo?.person_role_id === 1) ? true : false;
+    res.render("MainPage.html", {
+        sectionName: currentSection.section_name, items: items, isSeller: isSeller,
+        isCustomer: isCustomer, sections: sections
+    });
 }
 
 

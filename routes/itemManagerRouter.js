@@ -17,7 +17,7 @@ managerRouter.use(async function (req, res, next) {
     }
     let user = await dbConnection.getUserById(userId);
     console.log(user);
-    if (user == null || user.person_role_id != 1) {
+    if (user == null || user.person_role_id != 3) {
         res.status = 403;
         res.send("Forbidden: can't have permission");
         return;
@@ -25,6 +25,8 @@ managerRouter.use(async function (req, res, next) {
     next();
 });
 
+
+// Show all item of seller it the storage
 managerRouter.use('', async function (req, res, next) {
     if (req.url == '/') {
         //Get list of registered items
@@ -37,11 +39,12 @@ managerRouter.use('', async function (req, res, next) {
 });
 
 
+// Add new item
 managerRouter.use('/New', async function (req, res, next) {
     let sections = await dbConnection.getSections(0);
     let item = {
         item_id: -1,
-        item_img_path: "/img/noimage.img",
+        item_img_path: "/img/noimage.png",
         item_name: "",
         item_description: "",
         item_price: "0"
@@ -49,17 +52,24 @@ managerRouter.use('/New', async function (req, res, next) {
     res.render("ItemManager/EditItemPage.html", {sections: sections, item: item});
 });
 
+
+// Edit existing item
 managerRouter.use('/Edit', async function (req, res, next) {
     let sections = await dbConnection.getSections(0);
+    // Get item ID from GET param
     let itemId = req.query.itemId;
     if (itemId == null) {
         res.send("Not found");
         return;
     }
     let item = await dbConnection.getItemById(itemId);
+    item.storage_count = await dbConnection.getItemsCountInStorage(itemId);
+    item.catalog_count = await dbConnection.getItemsCountInCatalog(itemId);
     res.render("ItemManager/EditItemPage.html", { sections: sections, item: item });
 });
 
+
+// Delete existing item
 managerRouter.use('/Delete', async function (req, res, next) {
     let sections = await dbConnection.getSections(0);
     let itemId = req.query.itemId;
@@ -72,7 +82,7 @@ managerRouter.use('/Delete', async function (req, res, next) {
 });
 
 
-//Add or edit items
+// Add or edit items (save data to DB)
 managerRouter.post('/Editor', async function (req, res, next) {
     if (!isValidItemFormData(req.body)) {
         res.send("Bad data");

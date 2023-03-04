@@ -50,6 +50,9 @@ img {
 
 .image-container{
     overflow: hidden;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
 }
 
 

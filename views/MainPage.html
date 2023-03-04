@@ -39,6 +39,12 @@
                 </div>
                 <div class="col-md-2">
                     <p><%= currentItem.item_price %><span><%= currentItem.price_description %></span></p>
+                    <% if(isCustomer){ %>
+                    <button class="btn btn-primary"
+                            onclick="window.location.href = '/Basket/Add?itemId=<%= currentItem.item_id %>';">
+                        В корзину
+                    </button>
+                    <% } %>
                 </div>
             </div>
 

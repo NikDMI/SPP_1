@@ -36,11 +36,11 @@ var dbConnectionBuilder = {
                         items.push(item);
                     }
                 } catch (err) {
-
+                    console.log(err);
                 }
             }
         } catch (err) {
-
+            console.log(err);
         }
         return items;
     },
@@ -54,6 +54,7 @@ var dbConnectionBuilder = {
                 return userRecord[0][0];
             }
         } catch (err) {
+            console.log(err);
             return null;
         }
         return null;
@@ -63,11 +64,17 @@ var dbConnectionBuilder = {
     addNewUser: async function (user) {
         try {
             console.log(user);
-            await dbConnection.promise().query(`INSERT INTO \`persons\`
+            resQuery = await dbConnection.promise().query(`INSERT INTO \`persons\`
                 (person_role_id, person_name, person_surname, person_email, person_password)
                  VALUES (${user.person_role_id}, '${user.person_name}', '${user.person_surname}', '${user.person_email}', '${user.person_password}')`);
+            // Add user basket
+            let userId = resQuery[0].insertId;
+            await dbConnection.promise().query(`INSERT INTO \`basket\`
+                (basket_customer_id)
+                 VALUES (${userId})`);
 
         } catch (err) {
+            console.log(err);
             return false;
         }
         return true;
@@ -87,10 +94,28 @@ var dbConnectionBuilder = {
                 (st_manufacture_id, st_item_id, st_count)
                  VALUES (${manufactureId}, ${itemId}, ${item.itemStorageCount})`);
             //Add item to catalog
-            //Add item to storage
             await dbConnection.promise().query(`INSERT INTO \`catalog\`
                 (cat_manufacture_id, cat_item_id, cat_items_count)
                  VALUES (${manufactureId}, ${itemId}, ${item.itemCatalogCount})`);
+
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
+        return true;
+    },
+
+
+    addRecordToBusket: async function (userId, itemId, statusId = 1) {
+        try {
+            let manufactureId = await dbConnectionBuilder.getManufactureIdByItemId(itemId);
+            if (manufactureId === null) {
+                return false;
+            }
+            //Add item to basket record
+            await dbConnection.promise().query(`INSERT INTO \`basket_record\`
+                (br_customer_id, br_item_id, br_manufacture_id, br_deal_status_id)
+                 VALUES (${userId}, ${itemId}, ${manufactureId}, ${statusId})`);
 
         } catch (err) {
             console.log(err);
@@ -107,9 +132,6 @@ var dbConnectionBuilder = {
             await dbConnection.promise().query(`DELETE FROM \`storage\` WHERE st_item_id = ${itemId}`);
             await dbConnection.promise().query(`DELETE FROM \`catalog\` WHERE cat_item_id = ${itemId}`);
             await dbConnection.promise().query(`DELETE FROM \`items\` WHERE item_id = ${itemId}`);
-            //Add item to storage
-            //Add item to catalog
-            //Add item to storage
 
         } catch (err) {
             console.log(err);
@@ -128,9 +150,16 @@ var dbConnectionBuilder = {
             if (itemData.itemImage  && itemData.itemImage != '') {
                 imageUpdate = `,item_img_path = '${itemData.itemImage}'`;
             }
+            // Update item record
             let resQuery = await dbConnection.promise().query(`UPDATE \`items\` SET item_name = '${itemData.itemName}',
                 item_description = '${itemData.itemDescription}', item_price = ${itemData.itemPrice},
                 item_section_id = ${itemData.itemSection}, item_price_type_id = ${itemData.itemPriceTypeId} ${imageUpdate} WHERE item_id = ${itemData.itemId}`);
+            // Update storage record
+            resQuery = await dbConnection.promise().query(`UPDATE \`storage\` SET st_count = '${itemData.itemStorageCount}'
+                                                            WHERE st_item_id = ${itemData.itemId}`);
+            // Update catalog record
+            resQuery = await dbConnection.promise().query(`UPDATE \`catalog\` SET cat_items_count = '${itemData.itemCatalogCount}'
+                                                            WHERE cat_item_id = ${itemData.itemId}`);
 
         } catch (err) {
             console.log(err);
@@ -146,6 +175,7 @@ var dbConnectionBuilder = {
             return queryResult[0][0];
 
         } catch (err) {
+            console.log(err);
             return null;
         }
     },
@@ -160,6 +190,19 @@ var dbConnectionBuilder = {
             return item;
 
         } catch (err) {
+            console.log(err);
+            return null;
+        }
+    },
+
+
+    getManufactureIdByItemId: async function (itemId) {
+        try {
+            let queryResult = await dbConnection.promise().query(`SELECT * FROM \`storage\` WHERE st_item_id = '${itemId}'`);
+            return queryResult[0][0].st_manufacture_id;
+
+        } catch (err) {
+            console.log(err);
             return null;
         }
     },
@@ -171,6 +214,43 @@ var dbConnectionBuilder = {
             return queryResult[0][0].priceType_description;
 
         } catch (err) {
+            console.log(err);
+            return null;
+        }
+    },
+
+
+    getBasketRecordsByUserId: async function (userId) {
+        try {
+            let queryResult = await dbConnection.promise().query(`SELECT * FROM \`basket_record\` WHERE br_customer_id = '${userId}'`);
+            console.log(queryResult[0]);
+            return queryResult[0];
+
+        } catch (err) {
+            console.log(err);
+            return null;
+        }
+    },
+
+
+    getItemsCountInStorage: async function (itemId) {
+        try {
+            let queryResult = await dbConnection.promise().query(`SELECT * FROM \`storage\` WHERE st_item_id = '${itemId}'`);
+            return queryResult[0][0].st_count;
+
+        } catch (err) {
+            console.log(err);
+            return null;
+        }
+    },
+
+    getItemsCountInCatalog: async function (itemId) {
+        try {
+            let queryResult = await dbConnection.promise().query(`SELECT * FROM \`catalog\` WHERE cat_item_id = '${itemId}'`);
+            return queryResult[0][0].cat_items_count;
+
+        } catch (err) {
+            console.log(err);
             return null;
         }
     },
@@ -189,11 +269,11 @@ var dbConnectionBuilder = {
                     let item = await dbConnectionBuilder.getItemById(itemId);
                     items.push(item);
                 } catch (err) {
-
+                    console.log(err);
                 }
             }
         } catch (err) {
-
+            console.log(err);
         }
         return items;
     },
@@ -211,12 +291,12 @@ var dbConnectionBuilder = {
                     let childSections = await dbConnectionBuilder.getSections(sectionRecord.section_id);
                     sectionRecord.childSections = childSections;
                 } catch (err) {
-
+                    console.log(err);
                 }
                 sections.push(sectionRecord);
             }
         } catch (err) {
-
+            console.log(err);
         }
         return sections;
     },
